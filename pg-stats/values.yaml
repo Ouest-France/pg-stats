@@ -1,0 +1,1 @@
+databaseUrl: postgresql://user:password@database.domain.com:5432/dbname

@@ -1,0 +1,693 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": 84,
+  "links": [
+    {
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [
+        "postgres"
+      ],
+      "targetBlank": true,
+      "type": "dashboards"
+    }
+  ],
+  "rows": [
+    {
+      "collapse": false,
+      "height": 631,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": true,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fill": 1,
+          "id": 10,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": true,
+            "values": true
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum by (indexrelname) (rate(pg_stat_user_indexes_idx_scan{schemaname=\"$schema\", relname=\"$table\"}[1m]))",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "{{ indexrelname }}",
+              "refId": "A",
+              "step": 40
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Index scans initiated",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": true,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fill": 1,
+          "id": 14,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": true,
+            "values": true
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum by (indexrelname) (rate(pg_stat_user_indexes_idx_tup_fetch{schemaname=\"$schema\", relname=\"$table\"}[1m]) + rate(pg_stat_user_indexes_idx_tup_read{schemaname=\"$schema\", relname=\"$table\"}[1m]))",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "{{ indexrelname }}",
+              "refId": "A",
+              "step": 40
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Entries & rows returned",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": true,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fill": 1,
+          "id": 15,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": true,
+            "values": true
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum by (indexrelname) (rate(pg_statio_user_indexes_idx_blks_read{schemaname=\"$schema\", relname=\"$table\",}[1m]) + rate(pg_statio_user_indexes_idx_blks_hit{schemaname=\"$schema\", relname=\"$table\"}[1m]))",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "{{ indexrelname }}",
+              "refId": "A",
+              "step": 40
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Block read",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Global",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fill": 1,
+          "id": 1,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "index": {
+              "selected": true,
+              "text": "sma_article_id",
+              "value": "sma_article_id"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(pg_stat_user_indexes_idx_scan{schemaname=\"$schema\", relname=\"$table\", indexrelname=\"$index\"}[1m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "count",
+              "refId": "A",
+              "step": 40
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Index scans initiated",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fill": 1,
+          "id": 2,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "index": {
+              "selected": true,
+              "text": "sma_article_id",
+              "value": "sma_article_id"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(pg_stat_user_indexes_idx_tup_read{schemaname=\"$schema\", relname=\"$table\", indexrelname=\"$index\"}[1m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "index entries returnd",
+              "refId": "A",
+              "step": 40
+            },
+            {
+              "expr": "rate(pg_stat_user_indexes_idx_tup_fetch{schemaname=\"$schema\", relname=\"$table\", indexrelname=\"$index\"}[1m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "rows fetch",
+              "refId": "B",
+              "step": 40
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Entries & rows returned",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {
+            "block read": "#BF1B00",
+            "buffer hits": "#7EB26D"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fill": 1,
+          "id": 3,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "index": {
+              "selected": true,
+              "text": "sma_article_id",
+              "value": "sma_article_id"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(pg_statio_user_indexes_idx_blks_read{schemaname=\"$schema\", relname=\"$table\", indexrelname=\"$index\"}[1m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "block read",
+              "refId": "A",
+              "step": 40
+            },
+            {
+              "expr": "rate(pg_statio_user_indexes_idx_blks_hit{schemaname=\"$schema\", relname=\"$table\", indexrelname=\"$index\"}[1m])",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "buffer hits",
+              "refId": "B",
+              "step": 40
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Blocks read",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": "index",
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Index $index",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [
+    "postgres"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "text": "content",
+          "value": "content"
+        },
+        "datasource": "prometheus-k8s",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "schema",
+        "options": [],
+        "query": "label_values(pg_stat_user_tables_analyze_count, schemaname)",
+        "refresh": 2,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "six_months_articles",
+          "value": "six_months_articles"
+        },
+        "datasource": "prometheus-k8s",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "table",
+        "options": [],
+        "query": "label_values(pg_stat_user_tables_analyze_count{schemaname=\"$schema\"}, relname)",
+        "refresh": 2,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "sma_article_id",
+          "value": "sma_article_id"
+        },
+        "datasource": "prometheus-k8s",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": true,
+        "name": "index",
+        "options": [
+          {
+            "selected": true,
+            "text": "sma_article_id",
+            "value": "sma_article_id"
+          },
+          {
+            "selected": false,
+            "text": "sma_article_tags",
+            "value": "sma_article_tags"
+          },
+          {
+            "selected": false,
+            "text": "sma_by_last_publication_date_and_tags_and_drupal_id_idx",
+            "value": "sma_by_last_publication_date_and_tags_and_drupal_id_idx"
+          },
+          {
+            "selected": false,
+            "text": "sma_last_publication_date",
+            "value": "sma_last_publication_date"
+          },
+          {
+            "selected": false,
+            "text": "sma_nb_pictures",
+            "value": "sma_nb_pictures"
+          },
+          {
+            "selected": false,
+            "text": "sma_nb_videos",
+            "value": "sma_nb_videos"
+          },
+          {
+            "selected": false,
+            "text": "sma_nb_words",
+            "value": "sma_nb_words"
+          }
+        ],
+        "query": "label_values(pg_stat_user_indexes_idx_scan{schemaname=\"$schema\",relname=\"$table\"}, indexrelname)",
+        "refresh": 0,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Postgres stat indexes",
+  "version": 4
+}

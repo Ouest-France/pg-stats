@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "pg-stats.fullname" . }}
+  labels:
+    app: {{ template "pg-stats.name" . }}
+    chart: {{ template "pg-stats.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "pg-stats.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "pg-stats.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers: 
+      - name: exporter
+        image: wrouesnel/postgres_exporter
+        args: ["--extend.query-path", "/queries.yaml"]
+        env:
+          - name: "DATA_SOURCE_NAME"
+            value: {{ .Values.databaseUrl}}
+        volumeMounts:
+          - name: config-volume-parameters
+            mountPath: /queries.yaml
+            subPath: queries.yaml
+      volumes:
+        - name: config-volume-parameters
+          configMap:
+            name: {{ template "pg-stats.fullname" . }}
