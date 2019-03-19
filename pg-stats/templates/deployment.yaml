@@ -33,4 +33,4 @@ spec:
       volumes:
         - name: config-volume-parameters
           configMap:
-            name: {{ template "pg-stats.fullname" . }}
+            name: {{ template "pg-stats.fullname" . }}-config
