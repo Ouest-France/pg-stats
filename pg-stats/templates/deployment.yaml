@@ -25,7 +25,10 @@ spec:
         args: ["--extend.query-path", "/queries.yaml"]
         env:
           - name: "DATA_SOURCE_NAME"
-            value: {{ .Values.databaseUrl}}
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "pg-stats.fullname" . }}-secret
+                key: databaseUrl
         volumeMounts:
           - name: config-volume-parameters
             mountPath: /queries.yaml
