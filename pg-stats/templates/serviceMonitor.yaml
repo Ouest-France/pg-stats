@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ template "pg-stats.fullname" . }}-sm
+  labels:
+    app: {{ template "pg-stats.name" . }}
+    chart: {{ template "pg-stats.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  endpoints:
+    - interval: 10s
+      path: /
+      targetPort: 9187
+  jobLabel: app
+  namespaceSelector:
+    matchNames:
+      - {{ .Release.Namespace }}
+  selector:
+    matchLabels:
+      app: {{ template "project.name" . }}
+      release: {{ .Release.Name }}
