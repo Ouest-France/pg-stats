@@ -23,9 +23,16 @@ spec:
       - name: exporter
         image: wrouesnel/postgres_exporter
         args: ["--extend.query-path", "/queries.yaml"]
+        ports:
+        - name: http
+          containerPort: 9187
+          protocol: TCP
         env:
           - name: "DATA_SOURCE_NAME"
-            value: {{ .Values.databaseUrl}}
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "pg-stats.fullname" . }}-secret
+                key: databaseUrl
         volumeMounts:
           - name: config-volume-parameters
             mountPath: /queries.yaml
