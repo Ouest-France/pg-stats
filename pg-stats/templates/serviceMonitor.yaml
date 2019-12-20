@@ -18,5 +18,5 @@ spec:
       - {{ .Release.Namespace }}
   selector:
     matchLabels:
-      app: {{ template "project.name" . }}
+      app: {{ template "pg-stats.name" . }}
       release: {{ .Release.Name }}
