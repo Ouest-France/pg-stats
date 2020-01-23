@@ -10,6 +10,9 @@ metadata:
     chart: {{ template "pg-stats.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+    {{- if .Values.Prometheus }}
+    prometheus: {{ .Values.Prometheus }}
+    {{- end }}
 spec:
   endpoints:
     - interval: 10s
