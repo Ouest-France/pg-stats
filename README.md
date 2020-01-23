@@ -18,6 +18,13 @@ And voila!
 
 Note: depending on the configuration of your prometheus scraper, you might need to adjust the labels / port of the service. In the current configuration, we expect prometheus to scrape the services exposing a port named `http-metrics`.
 
+### Helm variable 
+
+| Name            | Description | Default Values |  Required       |
+|-----------------|-------------|----------------|-----------------|
+| smnamespace     |Service monitor namespace| nil    | no |
+| Prometheus      | Prometheus name| nil   |     no   |
+
 ## Dashboards
 
 You can find in the `dashboards` directory the grafana dashboards that will help you to visually analyse your database.
