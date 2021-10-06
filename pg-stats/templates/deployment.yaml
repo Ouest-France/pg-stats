@@ -1,8 +1,4 @@
-{{- if semverCompare "<= 1.19.x" .Capabilities.KubeVersion.Version }}
-apiVersion: extensions/v1beta1
-{{- else }}
-apiVersion: apps/v1
-{{- end }}
+apiVersion: {{ template "common.capabilities.deployment.apiVersion" . }}
 kind: Deployment
 metadata:
   name: {{ template "pg-stats.fullname" . }}
