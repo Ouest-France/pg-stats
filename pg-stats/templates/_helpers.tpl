@@ -35,7 +35,7 @@ Create chart name and version as used by the chart label.
 Return the appropriate apiVersion for deployment.
 */}}
 {{- define "common.capabilities.deployment.apiVersion" -}}
-{{- if semverCompare "<1.14-0" (include "common.capabilities.kubeVersion" .) -}}
+{{- if semverCompare "<1.14-0" .Capabilities.KubeVersion.Version .) -}}
 {{- print "extensions/v1beta1" -}}
 {{- else -}}
 {{- print "apps/v1" -}}
